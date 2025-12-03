@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário para agendamento de BI</title>
+    <link rel="icon" type="image/png" href="https://iconduck.com/icons/21501/font-awesome-full-logo/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background-color:rgb(35, 73, 155);
+            color: white;
+            height: 75px;
+        }
+        
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            height: 75px;
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+        }
+        
+        .logo img {
+            width:100%;
+            height: 100%;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: right;
+        }
+        
+        nav {
+            background-color: #4dabf8; 
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+        
+        .banner {
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            width:100%;
+            flex-direction: column;
+        }
+
+        .banner img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .banner img.active {
+            opacity: 1;
+        }
+        
+        .banner h1 {
+            padding:2rem;
+            font-size: 2.5rem;
+            z-index: 5;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+        
+        .banner p {
+            font-size: 1.2rem;
+            color:white;
+            z-index: 5;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+        
+        .appointment-btn {
+            position: relative;
+            background-color: #2060e9;
+            margin-top: 25px;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 5;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+        
+        .appointment-btn:hover {
+            background-color: #2d07b4;
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .content-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2060e9;
+        }
+        
+        .section-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service-card {
+            background-color: #f5f5f5;
+            padding: 1.8rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #2060e9;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: #2060e9;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            color: #2060e9;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        .service-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* RODAPÉ SIMPLES */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 2.5rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+        
+        .footer-column h3 {
+            color: #4dabf8;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2060e9;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ddd;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            color: #4dabf8;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .contact-item i {
+            color: #4dabf8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #2060e9;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .footer-bottom p {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                position: relative;
+                width: 100%;
+                padding: 0.5rem 1rem;
+            }
+            
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            
+            nav ul {
+                position: absolute;
+                top: 50px;  
+                right: 10px;
+                background-color: #4dabf8;
+                width: 180px;    
+                padding: 0.5rem 0;
+                border-radius: 8px;
+                display: none;    
+                flex-direction: column;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                z-index: 999;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 0.8rem 1rem;
+                display: block;
+                width: 100%;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
+            }
+            
+            .footer-info {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .top-bar {
+                flex-direction: column;
+                justify-content: center;
+                padding: 0.5rem;
+            }
+            
+            .tagline {
+                text-align: center;
+                margin-top: 0.5rem;
+                font-size: 0.7rem;
+            }
+            
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <img src="hospital.png" alt="Logo Biolife Center">
+            </div>
+            <div class="tagline">CLINICA BIOLIFE CENTER, SAÚDE PREMIUM</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="CLINICAFORMULARIO.html">Agendamento</a></li>
+                <li><a href="ABOUT.html">Sobre nós</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="banner" id="home">
+        <img src="https://d2ks5cytjcldab.cloudfront.net/conteudo/1010-bf0630828296e8c1cff29e4b42e4e9a3.jpg" class="active">
+        <img src="https://www.hospitalpresidente.com.br/wp-content/uploads/2023/03/clinica-medica.jpg">
+        <img src="https://www.grupomedcof.com.br/blog/wp-content/uploads/2025/06/Blog-MedCof-2025-06-10T181512.697.jpg">
+
+        <h1>SUA SAÚDE É A NOSSA PRIORIDADE.</h1>
+        <p>Cuidamos de si.</p>
+        <button class="appointment-btn">Agendar Consulta</button>
+    </section>
+    
+    <section class="content-section" id="especialidades">
+        <h2>Nossas Especialidades Médicas</h2>
+        <p class="section-intro">Na Clínica Biolife Center, oferecemos mais de 20 especialidades médicas com profissionais altamente qualificados e tecnologia de ponta para cuidar da sua saúde de forma integral.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>Cardiologia</h3>
+                <p>Diagnóstico e tratamento de doenças do coração e sistema cardiovascular. Realizamos exames como ecocardiograma, teste ergométrico e holter 24h.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-child"></i>
+                </div>
+                <h3>Pediatria</h3>
+                <p>Cuidados especializados para crianças e adolescentes, desde o nascimento até os 18 anos, incluindo acompanhamento de crescimento e vacinação.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bone"></i>
+                </div>
+                <h3>Ortopedia</h3>
+                <p>Tratamento de problemas musculoesqueléticos, fraturas, lesões esportivas e doenças da coluna vertebral com abordagem cirúrgica e conservadora.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-allergies"></i>
+                </div>
+                <h3>Dermatologia</h3>
+                <p>Cuidados com a saúde da pele, cabelos e unhas, incluindo tratamento de acne, câncer de pele, doenças autoimunes e procedimentos estéticos.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Neurologia</h3>
+                <p>Diagnóstico e tratamento de doenças do sistema nervoso como enxaqueca, epilepsia, Alzheimer, Parkinson e doenças neuromusculares.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Oftalmologia</h3>
+                <p>Cuidados com a saúde ocular, exames de vista, prescrição de óculos, tratamento de catarata, glaucoma e doenças da retina.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tooth"></i>
+                </div>
+                <h3>Odontologia</h3>
+                <p>Atendimento odontológico completo incluindo limpeza, restaurações, ortodontia, implantes e cirurgias bucais.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <h3>Clínica Geral</h3>
+                <p>Avaliação inicial, prevenção e tratamento de doenças comuns, acompanhamento de saúde e encaminhamento para especialistas quando necessário.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-female"></i>
+                </div>
+                <h3>Ginecologia</h3>
+                <p>Cuidados com a saúde da mulher, consultas de rotina, prevenção do câncer ginecológico, planejamento familiar e acompanhamento hormonal.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h3>Psiquiatria</h3>
+                <p>Diagnóstico e tratamento de transtornos mentais como depressão, ansiedade, bipolaridade e esquizofrenia com abordagem medicamentosa e terapêutica.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-x-ray"></i>
+                </div>
+                <h3>Radiologia</h3>
+                <p>Exames de imagem como raio-X, ultrassonografia, tomografia computadorizada e ressonância magnética para diagnósticos precisos.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Nutrição</h3>
+                <p>Acompanhamento nutricional personalizado para emagrecimento, ganho de massa muscular, controle de doenças e educação alimentar.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. 25 de Setembro, 1234<br>Maputo, Moçambique</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <p>+258 84 454 5664</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>biolifecenter@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Seg-Sex: 7h-20h<br>Sábado: 8h-14h</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Úteis</h3>
+                    <a href="#home">Home</a>
+                    <a href="#especialidades">Especialidades</a>
+                    <a href="CLINICAFORMULARIO.html">Agendar Consulta</a>
+                    <a href="ABOUT.html">Sobre a Clínica</a>
+                    <a href="#">Convênios Aceitos</a>
+                    <a href="#">Exames Realizados</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Siga-nos</h3>
+                    <p>Fique por dentro das nossas novidades e dicas de saúde:</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Atendimento de emergência 24h</p>
+                    <p style="font-size: 0.9rem;">Ampla área de estacionamento</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+            <p><span class="moz-flag"></span> Clínica Biolife Center Moçambique &copy; 2023 - Todos os direitos reservados</p>
+                <p>Uma instituição de saúde registrada no Ministério da Saúde de Moçambique</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                    <i class="fas fa-globe-africa"></i> Orgulhosamente moçambicana • 
+                    <i class="fas fa-heartbeat"></i> Cuidando da sua saúde desde 2015
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburguer
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+            });
+        });
+        
+        // Slider de imagens
+        let index = 0;
+        const images = document.querySelectorAll('.banner img');
+
+        function changeImage() {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }
+
+        setInterval(changeImage, 4000);
+        
+        // Botão de agendamento
+        document.querySelector('.appointment-btn').addEventListener('click', function() {
+            window.location.href = "CLINICAFORMULARIO.html";
+        });
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href.startsWith('#')) {
+                    return; 
+                }
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animação suave ao rolar para as especialidades
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar os cards de serviço para animação
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Biolife Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: rgb(35, 73, 155);
+            color: white;
+            height: 75px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+        }
+
+        .logo {
+            height: 75px;
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: right;
+        }
+
+        nav {
+            background-color: #4dabf8;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+   
+        .banner-slider {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .slide h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            margin-bottom: 1rem;
+        }
+
+        .slide p {
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+
+        .slide-1 {
+            background: url('https://d2ks5cytjcldab.cloudfront.net/conteudo/1010-bf0630828296e8c1cff29e4b42e4e9a3.jpg') no-repeat center center/cover;
+        }
+
+        .slide-2 {
+            background: url('https://vx.med.br/wp-content/uploads/2023/11/Medicos-fazendo-gestao-de-clinica.jpg') no-repeat center center/cover;
+        }
+
+        .slide-3 {
+            background: url('https://content.portaldofranchising.com.br/wp-content/uploads/2018/08/24104355/franquias-de-clinicas-1.jpg') no-repeat center center/cover;
+        }
+
+        .slide-4 {
+            background: url('https://iptc.net.br/wp-content/uploads/2021/04/Clinica-de-Reabilitacao.jpg') no-repeat center center/cover;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: white;
+        }
+
+        
+        .content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            color: #2060e9;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #2060e9;
+            display: inline-block;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-icon {
+            font-size: 2.5rem;
+            color: #2060e9;
+            margin-bottom: 1rem;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .mission, .vision {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #2060e9;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #2060e9;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #2060e9;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .footer-column h3 {
+            color: #4dabf8;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2060e9;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ddd;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: #4dabf8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-item i {
+            color: #4dabf8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #2060e9;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-bottom p {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+        }
+
+        .moz-flag {
+            display: inline-block;
+            width: 20px;
+            height: 15px;
+            background: linear-gradient(to right, 
+                #009c3b 33%,
+                #000000 33% 66%,
+                #ffd700 66% 83%,
+                #ffffff 83%
+            );
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                position: relative;
+                width: 100%;
+                padding: 0.5rem 1rem;
+            }
+            
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            
+            nav ul {
+                position: absolute;
+                top: 50px;
+                right: 10px;
+                background-color: #4dabf8;
+                width: 180px;
+                padding: 0.5rem 0;
+                border-radius: 8px;
+                display: none;
+                flex-direction: column;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                z-index: 999;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 0.8rem 1rem;
+                display: block;
+                width: 100%;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-info {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar {
+                flex-direction: column;
+                justify-content: center;
+                padding: 0.5rem;
+            }
+            
+            .tagline {
+                text-align: center;
+                margin-top: 0.5rem;
+                font-size: 0.7rem;
+            }
+            
+            .slide h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-slider {
+                height: 300px;
+            }
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <img src="hospital.png" alt="Logo Biolife Center">
+            </div>
+            <div class="tagline">CLINICA BIOLIFE CENTER, SAÚDE PREMIUM</div>
+        </div>
+    </header>
+
+ 
+    <nav>
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#especialidades">Especialidades</a></li>
+                <li><a href="CLINICAFORMULARIO.html">Agendamento</a></li>
+                <li><a href="ABOUT.html">Sobre nós</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="banner-slider">
+        <div class="slide slide-1 active">
+            <div class="slide-content">
+                <h1>SOBRE NÓS</h1>
+                <p>Conheça a história e os valores da Biolife Center</p>
+            </div>
+        </div>
+        
+        <div class="slide slide-2">
+            <div class="slide-content">
+                <h1>EXCELÊNCIA MÉDICA</h1>
+                <p>Profissionais qualificados e tecnologia de ponta</p>
+            </div>
+        </div>
+        
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <h1>ATENDIMENTO HUMANIZADO</h1>
+                <p>Cuidamos de cada paciente com atenção individual</p>
+            </div>
+        </div>
+        
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <h1>COMPROMISSO COM A SAÚDE</h1>
+                <p>13 anos de experiência em cuidados médicos</p>
+            </div>
+        </div>
+        
+        <div class="slider-dots" id="sliderDots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+            <span class="dot" data-slide="3"></span>
+        </div>
+    </section>
+
+   
+    <div class="content">
+       
+        <section class="about-section">
+            <h2 class="section-title">Nossa História</h2>
+            <p>A <strong>Biolife Center</strong> nasceu em 2010 com um propósito claro: oferecer cuidados de saúde premium em Moçambique. Fundada por um grupo de médicos visionários, nossa clínica rapidamente se estabeleceu como referência em atendimento médico especializado na região de Maputo.</p>
+            
+            <p>Começamos com uma pequena equipe de 5 especialistas e hoje contamos com mais de 50 profissionais altamente qualificados, atendendo milhares de pacientes anualmente. Nossa jornada é marcada pelo compromisso constante com a excelência médica e a inovação tecnológica.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">13+</div>
+                    <p>Anos de Experiência</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <p>Profissionais Especializados</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <p>Especialidades Médicas</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15.000+</div>
+                    <p>Pacientes Atendidos</p>
+                </div>
+            </div>
+        </section>
+
+ 
+        <section class="mission-vision-section">
+            <h2 class="section-title">Missão e Visão</h2>
+            <div class="mission-vision">
+                <div class="mission">
+                    <div class="about-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Nossa Missão</h3>
+                    <p>Oferecer cuidados de saúde de excelência, promovendo o bem-estar físico e emocional dos nossos pacientes através de atendimento humanizado, tecnologia avançada e equipe médica especializada.</p>
+                </div>
+                <div class="vision">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Nossa Visão</h3>
+                    <p>Ser reconhecida como a clínica de referência em Moçambique para cuidados de saúde premium, expandindo nossa atuação para outras províncias e mantendo os mais altos padrões de qualidade.</p>
+                </div>
+            </div>
+        </section>
+
+   
+        <section class="values-section">
+            <h2 class="section-title">Nossos Valores</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Humanização</h3>
+                    <p>Tratamos cada paciente com respeito, empatia e atenção individualizada, entendendo suas necessidades específicas.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Excelência</h3>
+                    <p>Buscamos continuamente a perfeição em nossos serviços através de formação contínua e tecnologia de ponta.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Ética</h3>
+                    <p>Atuamos com transparência, honestidade e integridade em todos os aspectos da nossa prática médica.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Trabalho em Equipe</h3>
+                    <p>Valorizamos a colaboração entre diferentes especialidades para oferecer um cuidado integral ao paciente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2 class="section-title">Nossa Jornada</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <h3>Fundação</h3>
+                    <p>Abertura da primeira unidade com 3 consultórios e 5 especialistas em Maputo.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2014</div>
+                    <h3>Primeira Expansão</h3>
+                    <p>Ampliação para 10 consultórios e contratação de 15 novos profissionais.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <h3>Tecnologia Avançada</h3>
+                    <p>Investimento em equipamentos de última geração e sistema de prontuário eletrônico.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <h3>Reconhecimento</h3>
+                    <p>Premiada como "Melhor Clínica Privada de Maputo" pela Associação Médica Moçambicana.</p>
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="infrastructure-section">
+            <h2 class="section-title">Nossa Infraestrutura</h2>
+            <p>A Biolife Center conta com instalações modernas e equipamentos de última geração:</p>
+            <ul style="margin: 1rem 0 1rem 2rem;">
+                <li>Consultórios climatizados e equipados com tecnologia moderna</li>
+                <li>Sala de exames com equipamentos de imagem de alta resolução</li>
+                <li>Laboratório de análises clínicas certificado</li>
+                <li>Ampla área de recepção e sala de espera confortável</li>
+                <li>Estacionamento privativo para pacientes</li>
+                <li>Acessibilidade completa para pessoas com mobilidade reduzida</li>
+            </ul>
+        </section>
+
+      
+        <section class="social-section">
+            <h2 class="section-title">Compromisso Social</h2>
+            <p>Acreditamos na responsabilidade social da nossa instituição. Realizamos periodicamente:</p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Campanhas de Saúde</h3>
+                    <p>Consultas gratuitas em comunidades carentes de Maputo.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Programas Educativos</h3>
+                    <p>Palestras sobre prevenção de doenças em escolas e empresas.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Sustentabilidade</h3>
+                    <p>Práticas ambientalmente responsáveis em toda a operação.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. 25 de Setembro, 1234<br>Maputo, Moçambique</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <p>+258 84 454 5664</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>biolifecenter@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Seg-Sex: 7h-20h<br>Sábado: 8h-14h</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Úteis</h3>
+                    <a href="index.html">Home</a>
+                    <a href="index.html#especialidades">Especialidades</a>
+                    <a href="CLINICAFORMULARIO.html">Agendar Consulta</a>
+                    <a href="ABOUT.html">Sobre a Clínica</a>
+                    <a href="#">Convênios Aceitos</a>
+                    <a href="#">Exames Realizados</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Siga-nos</h3>
+                    <p>Fique por dentro das nossas novidades e dicas de saúde:</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Atendimento de emergência 24h</p>
+                    <p style="font-size: 0.9rem;">Ampla área de estacionamento</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p><span class=></span> Clínica Biolife Center Moçambique &copy; 2023 - Todos os direitos reservados</p>
+                <p>Uma instituição de saúde registrada no Ministério da Saúde de Moçambique</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                    <i class="fas fa-globe-africa"></i> Orgulhosamente moçambicana • 
+                    <i class="fas fa-heartbeat"></i> Cuidando da sua saúde desde 2015
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+    
+        let slideInterval = setInterval(nextSlide, 4000);
+        
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 4000);
+            });
+        });
+        
+    
+        const slider = document.querySelector('.banner-slider');
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 4000);
+        });
+        
+     
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+            });
+        });
+    
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+
+        document.querySelectorAll('.about-card, .stat-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

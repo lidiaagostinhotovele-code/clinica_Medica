@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - BioLife Center</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', sans-serif;
+            background-color: #f3f6fc;
+            color: #333;
+        }
+
+        header {
+            background-color: rgb(35, 73, 155);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 3rem auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #264dc9;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+
+        label {
+            font-weight: bold;
+            color: #1d46c4;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #b8b8b8;
+            border-radius: 6px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #2060e9;
+            color: white;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #153fa6;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: #2060e9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    Agendamento de Consultas - BioLife Center
+</header>
+
+<div class="container">
+    <h2>Preencha os dados para agendar a sua consulta</h2>
+
+    <form id="agendamentoForm">
+        <div class="form-group">
+            <label>Nome completo:</label>
+            <input type="text" required placeholder="Seu nome completo">
+        </div>
+
+        <div class="form-group">
+            <label>Telefone:</label>
+            <input type="tel" required placeholder="84 000 0000">
+        </div>
+
+        <div class="form-group">
+            <label>Email (opcional):</label>
+            <input type="email" placeholder="email@exemplo.com">
+        </div>
+
+        <div class="form-group">
+            <label>Especialidade:</label>
+            <select required>
+                <option value="">Selecione...</option>
+                <option>Cardiologia</option>
+                <option>Pediatria</option>
+                <option>Ortopedia</option>
+                <option>Dermatologia</option>
+                <option>Clínica Geral</option>
+                <option>Medicina Interna</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Data da consulta:</label>
+            <input type="date" required>
+        </div>
+
+        <div class="form-group">
+            <label>Observações:</label>
+            <textarea rows="4" placeholder="Descreva o motivo da consulta (opcional)"></textarea>
+        </div>
+
+        <button class="submit-btn">Confirmar Agendamento</button>
+    </form>
+
+    <div class="back-link">
+        <a href="index.html">← Voltar ao site</a>
+    </div>
+
+</div>
+
+<script>
+    // Seleciona o formulário
+    const form = document.getElementById('agendamentoForm');
+
+    // Adiciona o evento de submit
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // previne o envio tradicional do formulário
+        // Redireciona para a página de confirmação
+        window.location.href = "sucesso.html";
+    });
+</script>
+
+</body>
+</html>
