@@ -2,7 +2,7 @@
 
 **Site institucional da clínica médica Biolife Center**
 
-Breve descrição: A Clínica Biolife Center é uma instituição de saúde premium sediada em Maputo, Moçambique. O website apresenta informações sobre especialidades médicas, equipe, serviços, agendamentos e contactos. O objetivo é oferecer uma plataforma simples e acessível para que pacientes encontrem especialidades, marquem consultas e conheçam mais sobre a clínica.
+Breve descrição: A Clínica Biolife Center é uma instituição de saúde premium sediada em Maputo, Moçambique. O website apresenta informações sobre especialidades médicas, equipe, serviços, agendamentos e contactos. O objetivo é oferecer uma plataforma simples e acessível para que pacientes encontrem especialidades, marquem consultas e conheçam mais sobre a clínicas.
 
 ---
 
